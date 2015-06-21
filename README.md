@@ -56,10 +56,7 @@ With bash:
 
 ```
 git clone # in your go path
-
 go test
-
 go build
-
 go install
 ```
