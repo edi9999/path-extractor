@@ -1,6 +1,6 @@
 # PathExtractor (pe)
 
-![demo](raw.github.com/edi9999/i/master/demo.gif)
+![demo](https://raw.github.com/edi9999/i/master/demo.gif)
 
 PathExtractor is a command line tool that extracts a list of files/paths from stdin.
 
