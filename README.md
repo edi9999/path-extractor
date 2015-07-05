@@ -29,7 +29,7 @@ For example, using `zsh` , I have as an alias:
 
 With `bash`:
 
-    bind '"PP": "| pe | fzf | read filename; [ ! -z $filename ] && vim $filename"'
+    bind '"PP": "| pe | uniq | fzf | while read filename; do [ ! -z $filename ] && </dev/tty vim $filename; done\n'
 
 So that If I run
 
@@ -50,7 +50,7 @@ With zsh:
 
 With bash:
 
-    bind '"CC": "| pe | fzf | read filename; [ ! -z $filename ] && echo -n $filename | xclip -selection c"'
+    bind '"CC": "| pe | fzf | read filename; [ ! -z $filename ] && echo -n $filename | xclip -selection c\n"'
 
 # Installation
 
