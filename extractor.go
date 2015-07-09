@@ -1,4 +1,4 @@
-package main
+package pathextractor
 
 import "regexp"
 
@@ -10,7 +10,7 @@ func pathExtractor(input string) [][][]byte {
 	return temp
 }
 
-func getAllMatches(input string) []string {
+func GetAllMatches(input string) []string {
 	matches := [][][]byte{}
 	result := []string{}
 	s := string("")

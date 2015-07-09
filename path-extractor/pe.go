@@ -1,5 +1,7 @@
 package main
 
+import "github.com/edi9999/path-extractor"
+
 import (
 	"bufio"
 	"fmt"
@@ -10,7 +12,7 @@ func main() {
 	stdin := os.Stdin
 	if scanner := bufio.NewScanner(stdin); scanner != nil {
 		for scanner.Scan() {
-			matches := getAllMatches(scanner.Text())
+			matches := pathextractor.GetAllMatches(scanner.Text())
 			for _, match := range matches {
 				fmt.Println(match)
 			}
