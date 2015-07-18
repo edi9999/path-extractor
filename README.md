@@ -55,8 +55,11 @@ With bash:
 # Installation
 
 ```
-git clone # in your go path
-go test
-go build
-go install
+go get github.com/edi9999/path-extractor/path-extractor
 ```
+
+You will have the `path-extractor` in your `$GOPATH/bin` directory which you can rename or alias to `pe`
+
+# Binaries
+
+They are no binaries for now (you have to build it yourself), but one idea would be to use [goxc](https://github.com/laher/goxc) to compile it on multiple platforms
