@@ -38,7 +38,7 @@ func isVersion(input string) bool {
 }
 
 func containsInvalidString(input string) bool {
-	invalidStrings := []string{"(", ")", "@", "origin/", "{", "}", "<", ">", "$", "*"}
+	invalidStrings := []string{"(", ")", "@", "and/or", "origin/", "{", "}", "<", ">", "$", "*"}
 	for _, s := range invalidStrings {
 		if strings.Contains(input, s) {
 			return true

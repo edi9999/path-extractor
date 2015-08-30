@@ -18,6 +18,11 @@ func TestGitIgnore(t *testing.T) {
 		t.Errorf("Matches email adresses", output[0])
 	}
 
+	output = GetAllMatches("and/or")
+	if len(output) != 0 {
+		t.Errorf("Matches and/or adresses", output[0])
+	}
+
 	output = GetAllMatches("v1.2")
 	if len(output) != 0 {
 		t.Errorf("Matches version number", output[0])
