@@ -9,7 +9,7 @@ type MatchOptions struct {
 }
 
 func pathExtractor(input string) [][][]byte {
-	surroundRegex := "[^]\\^\\+()!#[ \\t:'\"\\\\=]*"
+	surroundRegex := "[@~a-zA-Z/.]*"
 	r := regexp.MustCompile("(" + surroundRegex + "[\\./]" + surroundRegex + ")")
 	temp := [][][]byte{}
 	temp = r.FindAllSubmatch([]byte(input), -1)
