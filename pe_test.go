@@ -48,6 +48,11 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches function call", output)
 	}
 
+	output = GetAllMatches("fs.read(arg)", MatchOptions{})
+	if len(output) != 0 {
+		t.Errorf("Matches function call", output)
+	}
+
 	output = GetAllMatches("~/www", MatchOptions{})
 	if len(output) == 0 || output[0] != "~/www" {
 		t.Errorf("Doesnt match home", output)
