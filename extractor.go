@@ -17,7 +17,7 @@ func GetAllMatches(input string) []string {
 	matches = pathExtractor(input)
 	for _, match := range matches {
 		s = string(match[1])
-		if isEmail(s) || isDate(s) || isVersion(s) || isGitRange(s) || isGitInstruction(s) || containsInvalidString(s) || len(s) <= 2 {
+		if isEmail(s) || isDate(s) || isVersion(s) || isGitRange(s) || isGitInstruction(s) || endsWithInvalidString(s) || containsInvalidString(s) || len(s) <= 2 {
 			continue
 		}
 		if isGitPath(s) {

@@ -8,6 +8,11 @@ func TestGitIgnore(t *testing.T) {
 		t.Errorf("Doesnt match files", output)
 	}
 
+	output = GetAllMatches("I have a cat.")
+	if len(output) != 0 {
+		t.Errorf("Matches sentence", output)
+	}
+
 	output = GetAllMatches("hello .gitignore")
 	if output[0] != ".gitignore" {
 		t.Errorf("Doesnt match hidden files", output)
