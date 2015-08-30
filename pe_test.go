@@ -18,7 +18,7 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Doesn't match shebang", output)
 	}
 	if output[0] != "/usr/bin/env" {
-		t.Errorf("Doesn't match shebang", output)
+		t.Errorf("Doesn't match shebang exactly", output)
 	}
 
 	output = GetAllMatches("hello .gitignore", MatchOptions{})
