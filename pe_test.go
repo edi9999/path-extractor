@@ -13,6 +13,16 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches sentence", output)
 	}
 
+	output = GetAllMatches("s/+//", MatchOptions{})
+	if len(output) != 0 {
+		t.Errorf("Doesn't match substitute", output)
+	}
+
+	output = GetAllMatches("s/^//", MatchOptions{})
+	if len(output) != 0 {
+		t.Errorf("Doesn't match substitute", output)
+	}
+
 	output = GetAllMatches("/usr/bin/env\\", MatchOptions{})
 	if len(output) != 1 {
 		t.Errorf("Doesn't match escaped", output)
