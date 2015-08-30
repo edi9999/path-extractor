@@ -1,6 +1,11 @@
 package pathextractor
 
 import "regexp"
+import "fmt"
+
+type MatchOptions struct {
+	format string
+}
 
 func pathExtractor(input string) [][][]byte {
 	surroundRegex := "[^][ \\t:'\"]*"
@@ -25,10 +30,11 @@ func postProcess(input string) string {
 	return input
 }
 
-func GetAllMatches(input string) []string {
+func GetAllMatches(input string, options MatchOptions) []string {
 	matches := [][][]byte{}
 	result := []string{}
 	s := string("")
+	// print(input)
 	matches = pathExtractor(input)
 	for _, match := range matches {
 		s = string(match[1])
@@ -38,7 +44,11 @@ func GetAllMatches(input string) []string {
 		if isGitPath(s) {
 			s = replaceGitPath(s)
 		}
-		result = append(result, postProcess(s))
+		s = postProcess(s)
+		if options.format == "ackmate" {
+			s = fmt.Sprint(s, ":45")
+		}
+		result = append(result, s)
 	}
 	return result
 }
