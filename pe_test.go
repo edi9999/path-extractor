@@ -73,6 +73,16 @@ func TestGitIgnore(t *testing.T) {
 		t.Errorf("Doesnt match multi", output)
 	}
 
+	output = GetAllMatches("user.test.js")
+	if len(output) != 1 {
+		t.Errorf("Doesnt match multiple extensions", output)
+	}
+
+	output = GetAllMatches("(user.js)")
+	if len(output) != 1 {
+		t.Errorf("Doesnt match surrounded by parens", output)
+	}
+
 	output = GetAllMatches("var/")
 	if len(output) != 1 {
 		t.Errorf("Doesnt match dir", output)
