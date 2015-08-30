@@ -1,6 +1,7 @@
 package pathextractor
 
 import "regexp"
+import "strings"
 import "fmt"
 
 type MatchOptions struct {
@@ -8,7 +9,7 @@ type MatchOptions struct {
 }
 
 func pathExtractor(input string) [][][]byte {
-	surroundRegex := "[^][ \\t:'\"]*"
+	surroundRegex := "[^]()[ \\t:'\"]*"
 	r := regexp.MustCompile("(" + surroundRegex + "[\\./]" + surroundRegex + ")")
 	temp := [][][]byte{}
 	temp = r.FindAllSubmatch([]byte(input), -1)
@@ -38,6 +39,10 @@ func GetAllMatches(input string, options MatchOptions) []string {
 	matches = pathExtractor(input)
 	for _, match := range matches {
 		s = string(match[1])
+		if len(input) >= len(s+"(") && strings.Index(input, s+"(") != -1 {
+			continue
+		}
+
 		if isEmail(s) || isDate(s) || isVersion(s) || isGitRange(s) || isGitInstruction(s) || endsWithInvalidString(s) || containsInvalidString(s) || len(s) <= 2 {
 			continue
 		}
