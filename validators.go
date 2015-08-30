@@ -67,7 +67,7 @@ func endsWithInvalidString(input string) bool {
 }
 
 func containsInvalidString(input string) bool {
-	invalidStrings := []string{"(", ")", "and/or", "origin/", "{", "}", "<", ">", "$", "*"}
+	invalidStrings := []string{"(", ")", "and/or", "origin/", "{", "}", "<", ">", "$", "*", "this."}
 	for _, s := range invalidStrings {
 		if strings.Contains(input, s) {
 			return true

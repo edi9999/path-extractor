@@ -18,6 +18,11 @@ func TestGitIgnore(t *testing.T) {
 		t.Errorf("Doesnt match hidden files", output)
 	}
 
+	output = GetAllMatches(" this.user ")
+	if len(output) != 0 {
+		t.Errorf("Matches this.user", output)
+	}
+
 	output = GetAllMatches(" mail@mail.com ")
 	if len(output) != 0 {
 		t.Errorf("Matches email adresses", output)
