@@ -13,6 +13,14 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches sentence", output)
 	}
 
+	output = GetAllMatches("!#/usr/bin/env", MatchOptions{})
+	if len(output) != 1 {
+		t.Errorf("Doesn't match shebang", output)
+	}
+	if output[0] != "/usr/bin/env" {
+		t.Errorf("Doesn't match shebang", output)
+	}
+
 	output = GetAllMatches("hello .gitignore", MatchOptions{})
 	if output[0] != ".gitignore" {
 		t.Errorf("Doesnt match hidden files", output)
