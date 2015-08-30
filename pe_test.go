@@ -82,6 +82,9 @@ func TestGitIgnore(t *testing.T) {
 	if len(output) != 1 {
 		t.Errorf("Doesnt match surrounded by parens", output)
 	}
+	if output[0] != "user.js" {
+		t.Errorf("matches surrounded by parens badly", output)
+	}
 
 	output = GetAllMatches("var/")
 	if len(output) != 1 {

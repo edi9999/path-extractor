@@ -10,6 +10,21 @@ func pathExtractor(input string) [][][]byte {
 	return temp
 }
 
+func stripParens(input string) string {
+	r := regexp.MustCompile("^\\((.*)\\)$")
+	temp := [][]byte{}
+	temp = r.FindSubmatch([]byte(input))
+	if len(temp) <= 1 {
+		return input
+	}
+	return string(temp[1])
+}
+
+func postProcess(input string) string {
+	input = stripParens(input)
+	return input
+}
+
 func GetAllMatches(input string) []string {
 	matches := [][][]byte{}
 	result := []string{}
@@ -23,7 +38,7 @@ func GetAllMatches(input string) []string {
 		if isGitPath(s) {
 			s = replaceGitPath(s)
 		}
-		result = append(result, s)
+		result = append(result, postProcess(s))
 	}
 	return result
 }
