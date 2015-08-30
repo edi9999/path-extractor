@@ -82,6 +82,11 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches this.user", output)
 	}
 
+	output = GetAllMatches("To https://test@test.org/88/ls.git", MatchOptions{})
+	if len(output) != 0 {
+		t.Errorf("Matches email adresses", output)
+	}
+
 	output = GetAllMatches(" mail@mail.com ", MatchOptions{})
 	if len(output) != 0 {
 		t.Errorf("Matches email adresses", output)
