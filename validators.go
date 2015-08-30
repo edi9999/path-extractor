@@ -5,6 +5,15 @@ import (
 	"strings"
 )
 
+func stringInSlice(str string, list []string) bool {
+	for _, v := range list {
+		if v == str {
+			return true
+		}
+	}
+	return false
+}
+
 func isGitRange(input string) bool {
 	r := regexp.MustCompile("[0-9a-f]{3,}\\.\\.[0-9a-f]{3,}")
 	return r.Match([]byte(input))
@@ -13,6 +22,16 @@ func isGitRange(input string) bool {
 func isGitPath(input string) bool {
 	r := regexp.MustCompile("^[ab]/")
 	return r.Match([]byte(input))
+}
+
+func isEmail(input string) bool {
+	r := regexp.MustCompile("[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+.)+([a-zA-Z]{2,4})")
+	result := r.FindSubmatch([]byte(input))
+	if result == nil {
+		return false
+	}
+	fileExtensions := []string{"png", "bmp", "jpeg"}
+	return !stringInSlice(string(result[1]), fileExtensions)
 }
 
 func isDate(input string) bool {
@@ -38,7 +57,7 @@ func isVersion(input string) bool {
 }
 
 func containsInvalidString(input string) bool {
-	invalidStrings := []string{"(", ")", "@", "and/or", "origin/", "{", "}", "<", ">", "$", "*"}
+	invalidStrings := []string{"(", ")", "and/or", "origin/", "{", "}", "<", ">", "$", "*"}
 	for _, s := range invalidStrings {
 		if strings.Contains(input, s) {
 			return true

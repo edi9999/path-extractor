@@ -18,6 +18,11 @@ func TestGitIgnore(t *testing.T) {
 		t.Errorf("Matches email adresses", output[0])
 	}
 
+	output = GetAllMatches(" logo@2x.png ")
+	if len(output) == 0 {
+		t.Errorf("Doesn't match retina asset", output[0])
+	}
+
 	output = GetAllMatches("and/or")
 	if len(output) != 0 {
 		t.Errorf("Matches and/or adresses", output[0])
