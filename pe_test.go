@@ -13,6 +13,14 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches sentence", output)
 	}
 
+	output = GetAllMatches("prefix=/usr/bin", MatchOptions{})
+	if len(output) != 1 {
+		t.Errorf("Should match =/usr/bin", output)
+	}
+	if output[0] != "/usr/bin" {
+		t.Errorf("Doesn't match statement correctly", output)
+	}
+
 	output = GetAllMatches("/var//log", MatchOptions{})
 	if len(output) != 0 {
 		t.Errorf("Matches double //", output)
