@@ -104,6 +104,16 @@ func TestEverything(t *testing.T) {
 
 	output = GetAllMatches("and/or", MatchOptions{})
 	if len(output) != 0 {
+		t.Errorf("Matches and/or", output[0])
+	}
+
+	output = GetAllMatches("hello user.test.js", MatchOptions{})
+	if output[0] != "user.test.js" {
+		t.Errorf("Matches date", output[0])
+	}
+
+	output = GetAllMatches(" mail@mail.com ", MatchOptions{})
+	if len(output) != 0 {
 		t.Errorf("Matches and/or adresses", output)
 	}
 
