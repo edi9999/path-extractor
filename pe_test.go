@@ -18,6 +18,11 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Doesn't match statement correctly", output)
 	}
 
+	output = GetAllMatches("/usr_b/bin", MatchOptions{})
+	if output[0] != "/usr_b/bin" {
+		t.Errorf("Doesn't match statement correctly", output)
+	}
+
 	output = GetAllMatches("\"/usr/bin", MatchOptions{})
 	if output[0] != "/usr/bin" {
 		t.Errorf("Doesn't match statement correctly", output)
