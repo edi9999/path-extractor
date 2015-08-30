@@ -13,6 +13,14 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches sentence", output)
 	}
 
+	output = GetAllMatches("/usr/bin/env\\", MatchOptions{})
+	if len(output) != 1 {
+		t.Errorf("Doesn't match escaped", output)
+	}
+	if output[0] != "/usr/bin/env" {
+		t.Errorf("Doesn't match escaped exactly", output)
+	}
+
 	output = GetAllMatches("!#/usr/bin/env", MatchOptions{})
 	if len(output) != 1 {
 		t.Errorf("Doesn't match shebang", output)
