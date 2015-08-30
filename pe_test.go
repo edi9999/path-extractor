@@ -13,6 +13,11 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches sentence", output)
 	}
 
+	output = GetAllMatches("/var//log", MatchOptions{})
+	if len(output) != 0 {
+		t.Errorf("Matches double //", output)
+	}
+
 	output = GetAllMatches("s/+//", MatchOptions{})
 	if len(output) != 0 {
 		t.Errorf("Doesn't match substitute", output)
