@@ -104,22 +104,17 @@ func TestEverything(t *testing.T) {
 
 	output = GetAllMatches("and/or", MatchOptions{})
 	if len(output) != 0 {
-		t.Errorf("Matches and/or", output[0])
-	}
-
-	output = GetAllMatches("hello user.test.js", MatchOptions{})
-	if output[0] != "user.test.js" {
-		t.Errorf("Matches date", output[0])
-	}
-
-	output = GetAllMatches(" mail@mail.com ", MatchOptions{})
-	if len(output) != 0 {
 		t.Errorf("Matches and/or adresses", output)
 	}
 
 	output = GetAllMatches("v1.2", MatchOptions{})
 	if len(output) != 0 {
 		t.Errorf("Matches version number", output)
+	}
+
+	output = GetAllMatches("~/v1.2/js", MatchOptions{})
+	if len(output) != 1 {
+		t.Errorf("Should match path with version inside", output)
 	}
 
 	output = GetAllMatches("obj.slice()", MatchOptions{})
@@ -184,10 +179,11 @@ func TestEverything(t *testing.T) {
 	if len(output) != 1 {
 		t.Errorf("Ackmate doesnt match", output)
 	}
+
 	if output[0] == "test.js" {
 		t.Errorf("Ackmate should not forget number", output)
 	}
-	if output[0] != "test.js:45" {
+	if output[0] != "test.js:45:1" {
 		t.Errorf("Ackmate should output right line number", output)
 	}
 }

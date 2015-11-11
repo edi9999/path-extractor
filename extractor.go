@@ -8,12 +8,10 @@ type MatchOptions struct {
 	format string
 }
 
-func pathExtractor(input string) [][][]byte {
+func pathExtractor(input string) [][]int {
 	surroundRegex := "[@~\\-_a-zA-Z/.0-9]*"
 	r := regexp.MustCompile("(" + surroundRegex + "[\\./]" + surroundRegex + ")")
-	temp := [][][]byte{}
-	temp = r.FindAllSubmatch([]byte(input), -1)
-	return temp
+	return r.FindAllSubmatchIndex([]byte(input), -1)
 }
 
 func stripParens(input string) string {
@@ -32,28 +30,28 @@ func postProcess(input string) string {
 }
 
 func GetAllMatches(input string, options MatchOptions) []string {
-	matches := [][][]byte{}
 	result := []string{}
-	s := string("")
-	// print(input)
-	matches = pathExtractor(input)
-	for _, match := range matches {
-		s = string(match[1])
-		if len(input) >= len(s+"(") && strings.Index(input, s+"(") != -1 {
+	candidatePath := string("")
+	indexes := pathExtractor(input)
+	for _, index := range indexes {
+		candidatePath = input[index[0]:index[1]]
+		if len(input) >= len(candidatePath+"(") && strings.Index(input, candidatePath+"(") != -1 {
 			continue
 		}
 
-		if isEmail(s) || isDate(s) || isVersion(s) || isGitRange(s) || isGitInstruction(s) || endsWithInvalidString(s) || containsInvalidString(s) || len(s) <= 2 {
+		if isEmail(candidatePath) || isDate(candidatePath) || isVersion(candidatePath) || isGitRange(candidatePath) || isGitInstruction(candidatePath) || endsWithInvalidString(candidatePath) || containsInvalidString(candidatePath) || len(candidatePath) <= 2 {
 			continue
 		}
-		if isGitPath(s) {
-			s = replaceGitPath(s)
+		if isGitPath(candidatePath) {
+			candidatePath = replaceGitPath(candidatePath)
 		}
-		s = postProcess(s)
+		candidatePath = postProcess(candidatePath)
+		lineNumber := 45
+		columnNumber := 1
 		if options.format == "ackmate" {
-			s = fmt.Sprint(s, ":45")
+			candidatePath = fmt.Sprint(candidatePath, ":", lineNumber, ":", columnNumber)
 		}
-		result = append(result, s)
+		result = append(result, candidatePath)
 	}
 	return result
 }
