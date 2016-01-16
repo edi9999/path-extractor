@@ -56,6 +56,11 @@ func isVersion(input string) bool {
 	return r.Match([]byte(input))
 }
 
+func isSpace(input string) bool {
+	r := regexp.MustCompile("^[0-9]*\\.[0-9]+[MGK]$")
+	return r.Match([]byte(input))
+}
+
 func startsWithInvalidString(input string) bool {
 	invalidBeginnings := []string{"Error/", "Object.", "Array."}
 	for _, s := range invalidBeginnings {
@@ -77,7 +82,7 @@ func endsWithInvalidString(input string) bool {
 }
 
 func containsInvalidString(input string) bool {
-	invalidStrings := []string{"//", "()", "and/or", "origin/", "{", "}", "<", ">", "$", "*", "this."}
+	invalidStrings := []string{"//", "()", "and/or", "remotes/", "origin/", "{", "}", "<", ">", "$", "*", "this."}
 	for _, s := range invalidStrings {
 		if strings.Contains(input, s) {
 			return true
