@@ -8,6 +8,26 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Doesnt match files", output)
 	}
 
+	output = GetAllMatches("2.0G", "")
+	if len(output) != 0 {
+		t.Errorf("File size matches", output)
+	}
+
+	output = GetAllMatches("4.0K", "")
+	if len(output) != 0 {
+		t.Errorf("File size matches", output)
+	}
+
+	output = GetAllMatches("72K", "")
+	if len(output) != 0 {
+		t.Errorf("File size matches", output)
+	}
+
+	output = GetAllMatches("remotes/origin/master", "")
+	if len(output) != 0 {
+		t.Errorf("Git branch matches", output)
+	}
+
 	output = GetAllMatches("I have a cat.", "")
 	if len(output) != 0 {
 		t.Errorf("Matches sentence", output)
