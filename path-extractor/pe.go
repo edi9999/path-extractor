@@ -12,7 +12,7 @@ func main() {
 	stdin := os.Stdin
 	if scanner := bufio.NewScanner(stdin); scanner != nil {
 		for scanner.Scan() {
-			matches := pathextractor.GetAllMatches(scanner.Text(), pathextractor.MatchOptions{})
+			matches := pathextractor.GetAllMatches(scanner.Text(), "ackmate")
 			for _, match := range matches {
 				fmt.Println(match)
 			}

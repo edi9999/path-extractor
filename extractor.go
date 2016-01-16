@@ -29,7 +29,8 @@ func postProcess(input string) string {
 	return input
 }
 
-func GetAllMatches(input string, options MatchOptions) []string {
+func GetAllMatches(input string, format string) []string {
+	options := MatchOptions{format: format}
 	result := []string{}
 	candidatePath := string("")
 	restOfLine := string("")
