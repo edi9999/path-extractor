@@ -59,7 +59,7 @@ func GetAllMatches(input string, format string) []string {
 }
 
 func getCursorPosition(input string) string {
-	r := regexp.MustCompile("^(:[0-9]+(:[0-9]+)?)$")
+	r := regexp.MustCompile("^(:[0-9]+(:[0-9]+)?)")
 	temp := [][]byte{}
 	temp = r.FindSubmatch([]byte(input))
 	if len(temp) <= 1 {
