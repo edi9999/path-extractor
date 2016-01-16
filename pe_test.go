@@ -132,6 +132,11 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches version number", output)
 	}
 
+	output = GetAllMatches("14.22.2", "")
+	if len(output) != 0 {
+		t.Errorf("Matches version number", output)
+	}
+
 	output = GetAllMatches("~/v1.2/js", "")
 	if len(output) != 1 {
 		t.Errorf("Should match path with version inside", output)

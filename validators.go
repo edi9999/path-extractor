@@ -52,7 +52,7 @@ func replaceGitPath(input string) string {
 }
 
 func isVersion(input string) bool {
-	r := regexp.MustCompile("^v?[0-9x]\\.[0-9x]{1,2}(\\.[0-9x]{1,3})?$")
+	r := regexp.MustCompile("^v?[0-9x]{1,3}\\.[0-9x]{1,3}(\\.[0-9x]{1,3})?$")
 	return r.Match([]byte(input))
 }
 
