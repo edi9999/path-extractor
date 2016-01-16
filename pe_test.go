@@ -183,7 +183,19 @@ func TestEverything(t *testing.T) {
 	if output[0] == "test.js" {
 		t.Errorf("Ackmate should not forget number", output)
 	}
-	if output[0] != "test.js:45:1" {
+	if output[0] != "test.js:45" {
+		t.Errorf("Ackmate should output right line number", output)
+	}
+
+	output = GetAllMatches("test.js:45:12", MatchOptions{format: "ackmate"})
+	if len(output) != 1 {
+		t.Errorf("Ackmate doesnt match", output)
+	}
+
+	if output[0] == "test.js" {
+		t.Errorf("Ackmate should not forget number", output)
+	}
+	if output[0] != "test.js:45:12" {
 		t.Errorf("Ackmate should output right line number", output)
 	}
 }

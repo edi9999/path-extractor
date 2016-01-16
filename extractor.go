@@ -32,6 +32,7 @@ func postProcess(input string) string {
 func GetAllMatches(input string, options MatchOptions) []string {
 	result := []string{}
 	candidatePath := string("")
+	restOfLine := string("")
 	indexes := pathExtractor(input)
 	for _, index := range indexes {
 		candidatePath = input[index[0]:index[1]]
@@ -46,12 +47,22 @@ func GetAllMatches(input string, options MatchOptions) []string {
 			candidatePath = replaceGitPath(candidatePath)
 		}
 		candidatePath = postProcess(candidatePath)
-		lineNumber := 45
-		columnNumber := 1
 		if options.format == "ackmate" {
-			candidatePath = fmt.Sprint(candidatePath, ":", lineNumber, ":", columnNumber)
+			restOfLine = input[index[1]:]
+			cursorPos := getCursorPosition(restOfLine)
+			candidatePath = fmt.Sprint(candidatePath, cursorPos)
 		}
 		result = append(result, candidatePath)
 	}
 	return result
+}
+
+func getCursorPosition(input string) string {
+	r := regexp.MustCompile("^(:[0-9]+(:[0-9]+)?)$")
+	temp := [][]byte{}
+	temp = r.FindSubmatch([]byte(input))
+	if len(temp) <= 1 {
+		return ""
+	}
+	return string(temp[1])
 }
