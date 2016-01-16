@@ -157,6 +157,16 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Doesnt match multiple extensions", output)
 	}
 
+	output = GetAllMatches("[Error/foobar]", "")
+	if len(output) == 1 {
+		t.Errorf("Matches error", output)
+	}
+
+	output = GetAllMatches("[Object.foo]", "")
+	if len(output) == 1 {
+		t.Errorf("Matches Object.foo", output)
+	}
+
 	output = GetAllMatches("(user.js)", "")
 	if len(output) != 1 {
 		t.Errorf("Doesnt match surrounded by parens", output)

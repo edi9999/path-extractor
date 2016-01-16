@@ -41,7 +41,7 @@ func GetAllMatches(input string, format string) []string {
 			continue
 		}
 
-		if isEmail(candidatePath) || isDate(candidatePath) || isVersion(candidatePath) || isGitRange(candidatePath) || isGitInstruction(candidatePath) || endsWithInvalidString(candidatePath) || containsInvalidString(candidatePath) || len(candidatePath) <= 2 {
+		if isEmail(candidatePath) || isDate(candidatePath) || isVersion(candidatePath) || isGitRange(candidatePath) || isGitInstruction(candidatePath) || startsWithInvalidString(candidatePath) || endsWithInvalidString(candidatePath) || containsInvalidString(candidatePath) || len(candidatePath) <= 2 {
 			continue
 		}
 		if isGitPath(candidatePath) {

@@ -56,6 +56,16 @@ func isVersion(input string) bool {
 	return r.Match([]byte(input))
 }
 
+func startsWithInvalidString(input string) bool {
+	invalidBeginnings := []string{"Error/", "Object.", "Array."}
+	for _, s := range invalidBeginnings {
+		if strings.Index(input, s) == 0 {
+			return true
+		}
+	}
+	return false
+}
+
 func endsWithInvalidString(input string) bool {
 	invalidEndings := []string{"."}
 	for _, s := range invalidEndings {
