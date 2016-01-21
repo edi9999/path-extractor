@@ -33,6 +33,11 @@ func TestEverything(t *testing.T) {
 		t.Errorf("Matches sentence", output)
 	}
 
+	output = GetAllMatches("0.0.0.0:3000", "")
+	if len(output) != 0 {
+		t.Errorf("Match ipadress", output)
+	}
+
 	output = GetAllMatches("'/usr/bin", "")
 	if output[0] != "/usr/bin" {
 		t.Errorf("Doesn't match statement correctly", output)
