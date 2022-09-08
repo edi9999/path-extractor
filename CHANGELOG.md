@@ -1,3 +1,7 @@
+# v1.0.1
+
+Bugfix to work with diacritics (fix : https://github.com/edi9999/path-extractor/issues/9)
+
 # v1.0.0
 
 - add support for -u (unique)
