@@ -1,8 +1,10 @@
-package pathextractor
+package main
 
-import "regexp"
-import "strings"
-import "fmt"
+import (
+	"fmt"
+	"regexp"
+	"strings"
+)
 
 type MatchOptions struct {
 	format string

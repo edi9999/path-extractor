@@ -1,4 +1,4 @@
-package pathextractor
+package main
 
 import "testing"
 
