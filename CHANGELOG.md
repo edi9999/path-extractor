@@ -1,3 +1,7 @@
+# v1.0.2
+
+Fix module path to be able to go get this module.
+
 # v1.0.1
 
 Bugfix to work with diacritics (fix : https://github.com/edi9999/path-extractor/issues/9)
