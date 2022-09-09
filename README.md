@@ -69,7 +69,7 @@ bind '"CC": "| pe | fzf | read filename; [ ! -z $filename ] && echo -n $filename
 # Installation
 
 ```sh
-go install github.com/edi9999/path-extractor/path-extractor@latest
+go install github.com/edi9999/path-extractor@latest
 # sudo mv "$(which path-extractor)" /usr/bin/pe
 ```
 
