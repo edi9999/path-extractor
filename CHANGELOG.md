@@ -1,3 +1,7 @@
+# v1.0.3
+
+Add support for cyrillic characters
+
 # v1.0.2
 
 Fix module path to be able to go get this module.
