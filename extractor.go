@@ -11,7 +11,7 @@ type MatchOptions struct {
 }
 
 func pathExtractor(input string) [][]int {
-	surroundRegex := "([@~\\-_a-zA-Z/.0-9\u00C0-\u024F\u1E00-\u1EFF])*"
+	surroundRegex := "([@~\\-_a-zA-Z/.0-9\u00C0-\u024F\u1E00-\u1EFF\u0410-\u044F\u0401\u0451])*"
 	r := regexp.MustCompile("(" + surroundRegex + "[\\./]" + surroundRegex + ")")
 	return r.FindAllSubmatchIndex([]byte(input), -1)
 }
